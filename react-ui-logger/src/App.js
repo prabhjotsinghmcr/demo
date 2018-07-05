@@ -26,10 +26,10 @@ class App extends Component {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            Kafka Monitor
+                            Mortgage API Kafka Monitor
                         </h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body left-row">
                         {/*<h4><Link to="/create"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Contact</Link></h4>*/}
                         <table class="table table-stripe">
                             <thead>
@@ -50,11 +50,27 @@ class App extends Component {
                                     <td>{c.received}</td>
                                     <td><Link to={`/show/${c.associatedPerson}`}>{}</Link></td>
                                     <td>{c.messageReceived}</td>
-                                    <td>{c.address}</td>
+                                    <td>{c.translated}</td>
+                                    <td>{c.caseCreated}</td>
+                                    <td>{c.caseSaved}</td>
+                                    <td>{c.error}</td>
                                 </tr>
                             )}
                             </tbody>
                         </table>
+                    </div>
+
+                </div>
+                <div className="side-row">
+                    <div className="square">
+                        <h3>KafKa Server 1</h3>
+                    </div>
+                    <div className="square">
+                        <h3>KafKa Server 2</h3>
+                    </div>
+                    <div className="square">
+                        <h3>KafKa Server 3</h3>
+                        <h4>Health {status}</h4>
                     </div>
                 </div>
             </div>
