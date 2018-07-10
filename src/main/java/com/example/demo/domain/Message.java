@@ -8,8 +8,19 @@ public class Message {
     boolean Translated;
     boolean caseCreated;
 
+    public Message(String recieveTime, String person, boolean messageReceived, boolean translated, boolean caseCreated, boolean caseSaved, String error) {
+        this.recieveTime = recieveTime;
+        this.person = person;
+        this.messageReceived = messageReceived;
+        Translated = translated;
+        this.caseCreated = caseCreated;
+        this.caseSaved = caseSaved;
+        this.error = error;
+    }
+
     public String getRecieveTime() {
         return recieveTime;
+
     }
 
     public void setRecieveTime(String recieveTime) {

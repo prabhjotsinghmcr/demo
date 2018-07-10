@@ -27,16 +27,23 @@
   to { transform: rotate(360deg); }
 }
 .square{
-  width: 120px;
-  height: 120px;
-  background-color: orangered;
+  /*width: 120px;*/
+  /*height: 120px;*/
   text-align: center;
   margin-bottom: 20px;
 }
 .side-row{
   float: right;
-  margin-top: 10%;
 }
 .left-row{
   float: left;
+}
+.table-div{
+  width: 60%;
+}
+.Connected{
+  background-color: green;
+}
+.Disconnected{
+  background-color: orangered;
 }

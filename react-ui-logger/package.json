@@ -3,21 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@stomp/stompjs": "^4.0.6",
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
     "jquery": "^3.3.1",
+    "npm-watch": "^0.3.0",
     "popper": "^1.0.1",
     "popper.js": "^1.14.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "sockjs-client": "latest"
+  },
+  "watch": {
+    "test": "{src}/*.js"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && rm -rf ../src/main/resources/static && mv build ../src/main/resources/static",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "watch": "npm-watch"
   },
   "devDependencies": {
     "bootstrap": "^4.1.1"
