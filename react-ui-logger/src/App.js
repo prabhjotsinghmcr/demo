@@ -10,14 +10,10 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // messages: {"serverStatus":[{"id":0,"name":"Server:0","status":"Connected"},{"id":1,"name":"Server:1","status":"Connected"},{"id":2,"name":"Server:2","status":"Connected"},{"id":3,"name":"Server:3","status":"Connected"},{"id":4,"name":"Server:4","status":"Connected"},{"id":5,"name":"Server:5","status":"Disconnected"}],
-            //     "messageList":[{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"0","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"1","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"2","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"3","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"4","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"5","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"6","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"7","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"8","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"},{"recieveTime":"Tue Jul 10 09:19:32 BST 2018","person":"9","messageReceived":true,"Translated":true,"caseCreated":true,"caseSaved":true,"error":"New error Received"}]},
-            //
 
             messages:{"serverStatus":[{"id":0,"name":"Server:0","status":"Connected"},{"id":1,"name":"Server:1","status":"Connected"},{"id":2,"name":"Server:2","status":"Connected"},{"id":3,"name":"Server:3","status":"Connected"},{"id":4,"name":"Server:4","status":"Connected"},{"id":5,"name":"Server:5","status":"Disconnected"}],
                 "messageList":[{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":0,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":1,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":2,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":3,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":4,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":5,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":6,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":7,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":8,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":9,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}}]},
-            ss:{},
-            date:new Date()
+            date:new Date(),
         };
         this.closeModal = this.closeModal.bind(this);
     }
@@ -35,7 +31,6 @@ class App extends Component {
                 console.log(receivedMessageList.body);
                 this.setState({messages:receivedMessageList.body});
                 this.setState({ms:receivedMessageList.body.messageList});
-                receivedMessageList.each(mess=>this.setState({[mess.id]:false}));
                 console.log("message-"+this.state.messages);
                 console.log("MS:"+this.state.ms)
             });
@@ -109,7 +104,7 @@ class App extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {this.state.messages.messageList.map((message)=>
+                            {this.state.messages.messageList ? this.state.messages.messageList.map((message)=>
                                     <tr key={message.associatedPerson.personId}>
                                         <td>{message.received.date.day +"-"+ message.received.date.month+"-"+message.received.date.day+" "+message.received.time.hour+":"+message.received.time.minute+":"+message.received.time.second}</td>
                                         <td>{message.associatedPerson.personId}</td>
@@ -120,7 +115,7 @@ class App extends Component {
                                         <td>{message.message}</td>
                                         <td><button key={message.associatedPerson.personId} onClick={this.open.bind(this, message)}>Show Details</button></td>
                                     </tr>
-                            )
+                            ) : null
                             }
                             </tbody>
                         </table>
@@ -130,12 +125,12 @@ class App extends Component {
                 </div>
                 <div className="side-row">
                     <h1>Kafka Servers</h1>
-                    {this.state.messages.serverStatus.map((status)=>
+                    {this.state.messages.messageList ? this.state.messages.serverStatus.map((status)=>
                         <div key={status.id} className={"square "+status.status}>
                             <h3>KafKa {status.name}</h3>
                             <h4>{status.status}</h4>
                         </div>
-                    )
+                    ) : null
                     }
                 </div>
 
