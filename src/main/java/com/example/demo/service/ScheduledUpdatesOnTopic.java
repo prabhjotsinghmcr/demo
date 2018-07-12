@@ -2,12 +2,14 @@ package com.example.demo.service;
 
 import com.example.demo.domain.KafkaServerStatus;
 import com.example.demo.domain.Message;
+import com.example.demo.domain.Person;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -22,7 +24,8 @@ public class ScheduledUpdatesOnTopic {
         Gson gson = new Gson();
         Collection<Object> messageList = new ArrayList<>();
         for (int i = 0; i<=9;i++){
-            Message message = new Message(new Date().toString(),Integer.toString(i),true,true,true,true,"New error Received");
+            Person person = new Person(i,"title","FName","LName","JobTitle",true,true);
+            Message message = new Message(LocalDateTime.now(),true,true,true,true,"New error Received",person);
             ((ArrayList<Object>) messageList).add(i,message);
         }
         Collection<Object> serverStatusList = new ArrayList<>();
@@ -36,6 +39,9 @@ public class ScheduledUpdatesOnTopic {
         String json = gson.toJson(mp);
         System.out.println("---Publishing Data----"+json);
         template.convertAndSend("/topic/greetings", json);
+
+
+
     }
 
 }

@@ -1,38 +1,46 @@
 package com.example.demo.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
+
 public class Message {
 
-    String recieveTime;
-    String person;
-    boolean messageReceived;
-    boolean Translated;
-    boolean caseCreated;
 
-    public Message(String recieveTime, String person, boolean messageReceived, boolean translated, boolean caseCreated, boolean caseSaved, String error) {
-        this.recieveTime = recieveTime;
-        this.person = person;
+    LocalDateTime received;
+    boolean messageReceived;
+    boolean translated;
+    boolean caseCreated;
+    boolean caseSaved;
+    String message;
+    Person associatedPerson;
+    public Message(LocalDateTime received, boolean messageReceived, boolean translated, boolean caseCreated, boolean caseSaved, String message,Person person) {
+        this.received = received;
         this.messageReceived = messageReceived;
-        Translated = translated;
+        this.translated = translated;
         this.caseCreated = caseCreated;
         this.caseSaved = caseSaved;
-        this.error = error;
-    }
-
-    public String getRecieveTime() {
-        return recieveTime;
+        this.message = message;
+        this.associatedPerson = person;
 
     }
 
-    public void setRecieveTime(String recieveTime) {
-        this.recieveTime = recieveTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    public LocalDateTime getReceived() {
+        return received;
+
     }
 
-    public String getPerson() {
-        return person;
+    public void setReceived(LocalDateTime received) {
+        this.received = received;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public Person getAssociatedPerson() {
+        return associatedPerson;
+    }
+
+    public void setPerson(Person associatedPerson) {
+        this.associatedPerson = associatedPerson;
     }
 
     public boolean isMessageReceived() {
@@ -44,11 +52,11 @@ public class Message {
     }
 
     public boolean isTranslated() {
-        return Translated;
+        return translated;
     }
 
     public void setTranslated(boolean translated) {
-        Translated = translated;
+        this.translated = translated;
     }
 
     public boolean isCaseCreated() {
@@ -67,15 +75,14 @@ public class Message {
         this.caseSaved = caseSaved;
     }
 
-    public String getError() {
-        return error;
+    public String getMessage() {
+        return message;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    boolean caseSaved;
-    String error;
+
 
 }

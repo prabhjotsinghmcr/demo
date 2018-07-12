@@ -2,11 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.HelloMessage;
 import com.example.demo.domain.Message;
+import com.example.demo.domain.Person;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 @Controller
@@ -28,7 +29,9 @@ public class MainController {
 public Message greeting(HelloMessage message) throws Exception {
     Thread.sleep(1000); // simulated delay
     System.out.println("---controller req Data----");
-//    return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-    return new Message(new Date().toString(),"1",true,true,true,true,"New error Received");
+//    return new Person("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    Person person = new Person(10,"title","FName","LName","JobTitle",true,true);
+    Message errorMessage = new Message(LocalDateTime.now(),true,true,true,true,"New error Received",person);
+    return errorMessage;
 }
 }
