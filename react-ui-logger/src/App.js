@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import SockJS from "sockjs-client"
 import Stomp from "@stomp/stompjs"
 import Modal from "react-overlays/lib/Modal"
+
 
 class App extends Component {
 
@@ -10,29 +11,73 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
             messages:{"serverStatus":[{"id":0,"name":"Server:0","status":"Connected"},{"id":1,"name":"Server:1","status":"Connected"},{"id":2,"name":"Server:2","status":"Connected"},{"id":3,"name":"Server:3","status":"Connected"},{"id":4,"name":"Server:4","status":"Connected"},{"id":5,"name":"Server:5","status":"Disconnected"}],
-                "messageList":[{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":0,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":1,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":2,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":3,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":4,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":5,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":6,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":7,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":8,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":9,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}}]},
+                "messageList":[{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":"New error Received","associatedPerson":{"personId":0,"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},
+                    ]},
+
             date:new Date(),
+            lastUpdated: new Date(),
         };
         this.closeModal = this.closeModal.bind(this);
     }
+    // generate messages for testing
+    // upd(){
+    //
+    //     let tempMsz = {"serverStatus":[{"id":0,"name":"Server:0","status":"Connected"},{"id":1,"name":"Server:1","status":"Connected"},{"id":2,"name":"Server:2","status":"Connected"},{"id":3,"name":"Server:3","status":"Connected"},{"id":4,"name":"Server:4","status":"Connected"},{"id":5,"name":"Server:5","status":"Disconnected"}],
+    //         "messageList":[{"received":{"date":{"year":2018,"month":7,"day":12},"time":{"hour":4,"minute":22,"second":57,"nano":325000000}},"messageReceived":true,"translated":true,"caseCreated":true,"caseSaved":true,"message":new Date().toLocaleTimeString(),"associatedPerson":{"personId":Math.round(Math.random() * (7)),"title":"title","firstName":"FName","lastName":"LName","jobTitle":"JobTitle","translated":true,"containsErrors":true}},
+    //         ]};
+    //     this.updateMessages(tempMsz);
+    // }
+
+    getTimeSinceLastUpdate(){
+        let currentDateTime = new Date();
+       let timeSinceUpdate =  (currentDateTime.getTime() - this.state.lastUpdated.getTime())/1000 ;
+       this.setState({
+           lastUpdated:currentDateTime,
+           timeSinceLastUpdate:timeSinceUpdate,
+
+       });
+
+    }
+    updateMessages(messageUpdate){
+
+            this.setState({
+            messages:{"messageList":this.updateM(messageUpdate.messageList[0]),
+                "serverStatus":messageUpdate.serverStatus},
+        });
+
+    }
+    updateM(x){
+        let exist = false;
+        let updatedArray = this.state.messages.messageList.map((singleMessage)=>{
+            if(singleMessage.associatedPerson.personId === x.associatedPerson.personId){
+                exist = true;
+                return x;
+            }
+            else {
+                return singleMessage;
+            }
+
+        });
+
+        return !exist ? updatedArray.concat(x) : updatedArray;
+    }
+
 
     componentDidMount() {
         this.timerID = setInterval(
             () => this.tick(),
             1000
         );
+
         let stompClient = null;
         const socket = new SockJS('/error-websocket');
         stompClient = Stomp.over(socket);
         stompClient.connect({}, (frame) =>{
             stompClient.subscribe('/topic/greetings',  (receivedMessageList) =>{
                 console.log(receivedMessageList.body);
-                this.setState({messages:receivedMessageList.body});
-                this.setState({ms:receivedMessageList.body.messageList});
-                console.log("message-"+this.state.messages);
-                console.log("MS:"+this.state.ms)
+                this.updateMessages(JSON.parse(receivedMessageList.body));
+                this.getTimeSinceLastUpdate();
             });
 
         });
@@ -45,7 +90,6 @@ class App extends Component {
     }
     togglePopup(id) {
         this.setState({
-            // showPopup: !this.state.showPopup,
             [id]:!this.state[id],
         });
     }
@@ -57,17 +101,7 @@ class App extends Component {
         return props
 }
 
-    customStyles(){
 
-       return {
-            top                   : '50%',
-            left                  : '50%',
-            right                 : 'auto',
-            bottom                : 'auto',
-            marginRight           : '-50%',
-            transform             : 'translate(-50%, -50%)'
-        }
-    };
     open(message){
         this.setState({ showModal: true,
            showMessage:message,
@@ -87,7 +121,8 @@ class App extends Component {
                         <h3 className="panel-title">
                             Mortgage API Kafka Monitor
                         </h3>
-                        <h3>Date: {this.state.date.toLocaleTimeString()}</h3>
+
+                        <h6 className="ticker clock"><i className="fa fa-hourglass-1"> Updated: {this.state.timeSinceLastUpdate + " s ago"}</i></h6>
                     </div>
                     <div className="panel-body left-row">
                         <table className="table table-stripe">
@@ -113,7 +148,8 @@ class App extends Component {
                                         <td><input type="checkbox" readOnly={true} checked={message.caseCreated} /></td>
                                         <td><input type="checkbox" readOnly={true} checked={message.caseSaved} /></td>
                                         <td>{message.message}</td>
-                                        <td><button key={message.associatedPerson.personId} onClick={this.open.bind(this, message)}>Show Details</button></td>
+                                        <td><i key={message.associatedPerson.personId} onClick={this.open.bind(this, message)} className="fa fa-info detail"><u> Show Details</u></i> </td>
+                                        {/*<td><button key={message.associatedPerson.personId} onClick={this.open.bind(this, message)}>Show Details</button></td>*/}
                                     </tr>
                             ) : null
                             }
@@ -125,7 +161,7 @@ class App extends Component {
                 </div>
                 <div className="side-row">
                     <h1>Kafka Servers</h1>
-                    {this.state.messages.messageList ? this.state.messages.serverStatus.map((status)=>
+                    {this.state.messages.serverStatus ? this.state.messages.serverStatus.map((status)=>
                         <div key={status.id} className={"square "+status.status}>
                             <h3>KafKa {status.name}</h3>
                             <h4>{status.status}</h4>
@@ -139,19 +175,23 @@ class App extends Component {
                 <div id="model-div" key="model-div" className={this.state.showModal ? "popup" : null}>
                 <Modal aria-labelledby='modal-label' show={this.state.showModal} onHide={this.closeModal} keyboard={true}>
                     <div className={this.state.showModal ? "popup_inner" : null}>
-                        <button onClick={this.closeModal}>close</button>
-                        <h2>{this.state.showMessage ? this.state.showMessage.associatedPerson.personId :null}</h2>
-                        <h5>Receive Time: {this.state.showMessage ? this.state.showMessage.received.date.day +"-"+ this.state.showMessage.received.date.month+"-"+this.state.showMessage.received.date.day+" "+this.state.showMessage.received.time.hour+":"+this.state.showMessage.received.time.minute+":"+this.state.showMessage.received.time.second :null}</h5>
-                        <h5>Message Received: {this.state.showMessage ? this.state.showMessage.messageReceived :null}</h5>
-                        <h5>translated: {this.state.showMessage ? this.state.showMessage.translated :null}</h5>
-                        <h5>Case Created: {this.state.showMessage ? this.state.showMessage.caseCreated :null}</h5>
-                        <h5>Case Saved:{this.state.showMessage ? this.state.showMessage.caseSaved :null}</h5>
-                        <h5>Error: {this.state.showMessage ? this.state.showMessage.error :null}</h5>
-                        <h5>PersonID: {this.state.showMessage ? this.state.showMessage.associatedPerson.personId :null}</h5>
-                        <h5>Person First Name: {this.state.showMessage ? this.state.showMessage.associatedPerson.firstName :null}</h5>
-                        <h5>Person Last Name: {this.state.showMessage ? this.state.showMessage.associatedPerson.lastName :null}</h5>
-                        <h5>Person Job Title: {this.state.showMessage ? this.state.showMessage.associatedPerson.jobTitle :null}</h5>
-                        <h5>Person Translated:{this.state.showMessage ? this.state.showMessage.associatedPerson.translated :null}</h5>
+                        <i onClick={this.closeModal} className="fa fa-close"></i>
+                        <div className="xc">
+                         <h4>Error Message Details:</h4>
+                            <hr/>
+                         <h6>Receive Time: {this.state.showMessage ? this.state.showMessage.received.date.day +"-"+ this.state.showMessage.received.date.month+"-"+this.state.showMessage.received.date.day+" "+this.state.showMessage.received.time.hour+":"+this.state.showMessage.received.time.minute+":"+this.state.showMessage.received.time.second :null}</h6>
+                            <h6>Message Received: <input type="checkbox" readOnly={true} checked={this.state.showMessage ? this.state.showMessage.messageReceived : false}></input></h6>
+                        <h6>Translated: <input type="checkbox" readOnly={true} checked={this.state.showMessage ? this.state.showMessage.translated :false}></input></h6>
+                        <h6>Case Created: <input type="checkbox" readOnly={true} checked={this.state.showMessage ? this.state.showMessage.caseCreated :false}></input></h6>
+                        <h6>Case Saved:<input type="checkbox" readOnly={true} checked={this.state.showMessage ? this.state.showMessage.caseSaved :false}></input></h6>
+                        <h6>Error: {this.state.showMessage ? this.state.showMessage.error :null}</h6>
+                            <hr/>
+                        <h6>PersonID: {this.state.showMessage ? this.state.showMessage.associatedPerson.personId :null}</h6>
+                        <h6>Person First Name: {this.state.showMessage ? this.state.showMessage.associatedPerson.firstName :null}</h6>
+                        <h6>Person Last Name: {this.state.showMessage ? this.state.showMessage.associatedPerson.lastName :null}</h6>
+                        <h6>Person Job Title: {this.state.showMessage ? this.state.showMessage.associatedPerson.jobTitle :null}</h6>
+                        <h6>Person Translated:<input type="checkbox" readOnly={true} checked={this.state.showMessage ? this.state.showMessage.associatedPerson.translated :false}></input></h6>
+                        </div>
                     </div>
                 </Modal>
                 </div>

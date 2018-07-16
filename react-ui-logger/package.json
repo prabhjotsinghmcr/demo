@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
     "@stomp/stompjs": "^4.0.6",
     "ajv": "^6.5.2",
     "axios": "^0.18.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "npm-watch": "^0.3.0",
     "popper": "^1.0.1",
@@ -15,7 +17,7 @@
     "react-overlays": "^0.8.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "sockjs-client": "latest"
+    "sockjs-client": "^1.1.5"
   },
   "watch": {
     "test": "{src}/*.js"

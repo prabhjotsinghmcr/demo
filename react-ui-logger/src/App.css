@@ -39,7 +39,7 @@
   float: left;
 }
 .table-div{
-  width: 60%;
+  /*width: 60%;*/
 }
 .Connected{
   background-color: green;
@@ -78,7 +78,7 @@ html, body, .app {
   top: 25%;
   /*bottom: 25%;*/
   margin: auto;
-  background: white;
+  background-color: rgba(255,255,255,0.8);
 }
 
 .showModal{
@@ -89,4 +89,24 @@ html, body, .app {
   margin: auto;
 
   margin-top: 20%;
+}
+.xc{
+  margin: 5%;
+}
+
+.popup_inner i{
+  font-size:48px;color:red;
+  float: right;
+}
+.container{
+  max-width: 75%;
+}
+.detail{
+  color: green;
+
+  font-size: large;
+}
+.ticker{
+  margin-top: 2%;
+  color: firebrick;
 }
