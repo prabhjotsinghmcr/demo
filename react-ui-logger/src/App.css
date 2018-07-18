@@ -78,6 +78,7 @@ html, body, .app {
   top: 25%;
   /*bottom: 25%;*/
   margin: auto;
+  width: 70%;
   background-color: rgba(255,255,255,0.8);
 }
 
@@ -99,7 +100,7 @@ html, body, .app {
   float: right;
 }
 .container{
-  max-width: 75%;
+  max-width: 80%;
 }
 .detail{
   color: green;
